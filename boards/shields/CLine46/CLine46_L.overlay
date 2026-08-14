@@ -1,2 +1,6 @@
 #include "CLine46.dtsi"
 #include <behaviors/battery_history_request.dtsi>
+
+&uicr {
+    nfct-pins-as-gpios;
+};

@@ -83,3 +83,8 @@
             <&zip_scroll_scaler 1 8>;                           //スクロール量を1/8倍
     };
 };
+
+
+&uicr {
+    nfct-pins-as-gpios;
+};
