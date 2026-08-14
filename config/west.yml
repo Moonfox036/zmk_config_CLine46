@@ -16,13 +16,6 @@ manifest:
       # main+dya branch @ 2026-07-25 (Zephyr v4.1.0+zmk-fixes)
       revision: e5c9b6915b56801193e359dd9bad4a167ce0d1b8
       import: app/west.yml
-    - name: zmk-pmw3610-driver
-      remote: badjeff
-      revision: main
-    - name: zmk-rgbled-widget
-      remote: caksoylar
-      # v0.3 support was split out to v0.3-branch; main now tracks ZMK main/Zephyr 4.x
-      revision: main
 
     - name: zmk-module-ble-management
       remote: cormoran
@@ -70,6 +63,9 @@ manifest:
 
 
     #その他のモジュール
+    - name: zmk-pmw3610-driver
+      remote: badjeff
+      revision: main
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
