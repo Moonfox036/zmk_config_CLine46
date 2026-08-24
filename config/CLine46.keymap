@@ -15,17 +15,17 @@
     combos {
         compatible = "zmk,combos";
 
-        Mouse-L {
+        MouseL {
             bindings = <&mkp LCLK>;
             key-positions = <19 20>;
         };
 
-        Mouse-R {
+        MouseR {
             bindings = <&mkp RCLK>;
             key-positions = <20 21>;
         };
 
-        L_Alt+L_Arrow {
+        L_Alt_L_Arrow {
             bindings = <&kp LA(LEFT_ARROW)>;
             key-positions = <31 32>;
         };
