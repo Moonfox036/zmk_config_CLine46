@@ -13,22 +13,35 @@
 };
 
 / {
-    combos {
-        compatible = "zmk,combos";
+    // コンボは zmk,combos ではなく runtime-combo モジュールで定義する。
+    // zmk,combos はコンパイル時に固定されて DYA Studio から編集できないため。
+    // ここに書いた値は「工場出荷値」で、DYA Studio で上書きすると
+    // そちらが優先され、Reset to Default で戻せる
+    runtime_combo_defaults {
+        compatible = "cormoran,runtime-combo-defaults";
 
-        MouseL {
+        mouse_l {
+            slot = <0>;
             bindings = <&mkp LCLK>;
             key-positions = <19 20>;
+            require-prior-idle-ms = <125>;
+            display-name = "Mouse-L";
         };
 
-        MouseR {
+        mouse_r {
+            slot = <1>;
             bindings = <&mkp RCLK>;
             key-positions = <20 21>;
+            require-prior-idle-ms = <125>;
+            display-name = "Mouse-R";
         };
 
-        L_Alt_L_Arrow {
+        l_alt_l_arrow {
+            slot = <2>;
             bindings = <&kp LA(LEFT_ARROW)>;
             key-positions = <31 32>;
+            require-prior-idle-ms = <125>;
+            display-name = "L-Alt + L-Arrow";
         };
     };
 
@@ -56,6 +69,7 @@
         compatible = "zmk,keymap";
 
         Default_Layer0 {
+            display-name = "Default_Layer0";
             bindings = <
 &lt 4 ESC   &kp Q             &kp W     &kp E     &kp R               &kp T                                       &kp Y     &kp U  &kp I      &kp O           &kp P            &kp DEL
 &kp TAB     &kp A             &kp S     &kp D     &kp F               &kp G                                       &kp H     &kp J  &kp K      &kp L           &kp MINUS        &kp RIGHT_CONTROL
@@ -65,6 +79,7 @@
         };
 
         Symbol_Layer1 {
+            display-name = "Symbol_Layer1";
             bindings = <
 &trans  &none   &none   &none          &none             &none                               &kp INT_YEN    &kp LS(NUMBER_7)  &kp LS(NUMBER_8)  &kp LS(NUMBER_9)  &kp RBKT                 &kp NON_US_HASH
 &trans  &none   &none   &kp SEMICOLON  &kp SINGLE_QUOTE  &kp LEFT_BRACKET                    &kp LBKT       &kt LS(NUMBER_4)  &kp LS(NUMBER_5)  &kp LS(NUMBER_6)  &kp LS(INTERNATIONAL_1)  &kp LS(MINUS)
@@ -74,6 +89,7 @@
         };
 
         Func_Sc_Layer2 {
+            display-name = "Func_Sc_Layer2";
             bindings = <
 &trans  &kp LEFT_GUI      &kp F7  &kp F8  &kp F9  &kp F10                     &kp LC(Y)  &kp LC(C)       &kp LC(V)       &kp LC(X)        &kp LC(P)  &kp PAUSE_BREAK
 &trans  &kp LEFT_ALT      &kp F4  &kp F5  &kp F6  &kp F11                     &kp LC(Z)  &mkp MB1        &kp UP_ARROW    &mkp MB2         &kp LC(F)  &kp LC(S)
@@ -83,6 +99,7 @@
         };
 
         Device_Layer3 {
+            display-name = "Device_Layer3";
             bindings = <
 &bt BT_CLR      &trans  &trans        &trans        &sys_reset    &bootloader                            &bootloader  &sys_reset  &trans  &trans  &trans  &trans
 &bt BT_CLR_ALL  &trans  &bt BT_SEL 4  &trans        &trans        &trans                                 &trans       &trans      &trans  &trans  &trans  &trans
@@ -92,6 +109,7 @@
         };
 
         Number_Layer4 {
+            display-name = "Number_Layer4";
             bindings = <
 &trans  &kp LANGUAGE_2  &kp LANGUAGE_1  &trans  &trans  &trans                    &kp SINGLE_QUOTE  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_SLASH     &kp KP_NUMLOCK
 &trans  &trans          &trans          &trans  &trans  &trans                    &kp KP_N0         &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_PLUS      &kp KP_MINUS
@@ -101,6 +119,7 @@
         };
 
         Brank_Layer5 {
+            display-name = "Brank_Layer5";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
@@ -110,6 +129,7 @@
         };
 
         Mouse_Layer6 {
+            display-name = "Mouse_Layer6";
             bindings = <
 &kp LEFT_SHIFT  &kp LEFT_WIN  &kp HOME  &kp UP    &kp END    &none                            &mkp MCLK  &kp PAGE_UP  &kp LG(D)  &kp PAGE_DOWN  &none    &kp K_APP
 &kp LCTRL       &kp LALT      &kp LEFT  &kp DOWN  &kp RIGHT  &kp LG(E)                        &none      &mkp LCLK    &kp UP     &mkp RCLK      &none    &trans
