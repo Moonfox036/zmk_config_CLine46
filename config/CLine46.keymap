@@ -47,13 +47,14 @@
             key-positions = <31 32>;
             require-prior-idle-ms = <125>;
             display-name = "L-Alt + L-Arrow";
+        };
 
         l_alt_up_arrow {
             slot = <3>;
-            bindings = <&kp LA(LEFT_ARROW)>;
-            key-positions = <31 32>;
+            bindings = <&kp LA(UP_ARROW)>;
+            key-positions = <8 9>;
             require-prior-idle-ms = <125>;
-            display-name = "L-Alt + L-Arrow";
+            display-name = "L-Alt + UP-Arrow";
         };
     };
 
