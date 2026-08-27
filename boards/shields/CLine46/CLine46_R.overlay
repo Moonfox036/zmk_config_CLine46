@@ -64,53 +64,52 @@
 
 // マウススクロールを縦横別レイヤーに設定
 // ==========================================================================
-// 1. DYA Studio対応のランタイムプロセッサを「縦用」「横用」に複製・定義
+// 1. ルート直下に DYA Studio対応のランタイムプロセッサを「縦用」「横用」として新規定義
 // ==========================================================================
-// 縦スクロールレイヤー用のランタイムプロセッサ
-scroll_v_runtime_proc: scroll_v_runtime_proc {
-    compatible = "zmk,input-processor-runtime";
-    #input-processor-cells = <0>;
-    type = "scroll";
-    scale-multiplier = <1>;
-    scale-divisor = <16>;
+/ {
+    scroll_v_runtime_proc: scroll_v_runtime_proc {
+        compatible = "zmk,input-processor-runtime";
+        #input-processor-cells = <0>;
+        type = "scroll";
+        scale-multiplier = <1>;
+        scale-divisor = <16>;
+    };
+
+    scroll_h_runtime_proc: scroll_h_runtime_proc {
+        compatible = "zmk,input-processor-runtime";
+        #input-processor-cells = <0>;
+        type = "scroll";
+        scale-multiplier = <1>;
+        scale-divisor = <16>;
+    };
 };
 
-// 横スクロールレイヤー用のランタイムプロセッサ
-scroll_h_runtime_proc: scroll_h_runtime_proc {
-    compatible = "zmk,input-processor-runtime";
-    #input-processor-cells = <0>;
-    type = "scroll";
-    scale-multiplier = <1>;
-    scale-divisor = <16>;
-};
-
-
 // ==========================================================================
-// 2. トラックボールのリスナー設定（レイヤーごとにプロセッサーを切り替え）
+// 2. 既存のトラックボールリスナーにレイヤーごとの設定を紐付け（ここは前回と同様です）
 // ==========================================================================
 &trackball_listener {
     status = "okay";
     input-processors = <&mouse_runtime_input_processor>,
-                       <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>; // 通常時のX軸反転
+                       <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>;
 
     /* 【レイヤー3】縦スクロール専用設定 */
     scroller_vertical {
         layers = <3>;
         input-processors = 
-            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       // Y軸反転
-            <&zip_xy_to_scroll_mapper>,                         // スクロールモードに変更
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   // スクロールのX軸反転
-            <&scroll_v_runtime_proc>;                           // 縦用のDYA Studio調整プロセッサ
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+            <&zip_xy_to_scroll_mapper>,
+            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
+            <&scroll_v_runtime_proc>;
     };
 
     /* 【レイヤー5】横スクロール専用設定 */
     scroller_horizontal {
-        layers = <4>;
+        layers = <5>;
         input-processors = 
-            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       // Y軸反転
-            <&zip_xy_to_scroll_mapper>,                         // スクロールモードに変更
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   // スクロールのX軸反転
-            <&scroll_h_runtime_proc>;                           // 横用のDYA Studio調整プロセッサ
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+            <&zip_xy_to_scroll_mapper>,
+            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
+            <&scroll_h_runtime_proc>;
     };
 };
 
