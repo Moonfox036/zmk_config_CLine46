@@ -71,6 +71,7 @@
         compatible = "zmk,input-processor-runtime";
         #input-processor-cells = <0>;
         type = "scroll";
+        processor-label = "Scroll Vertical"; // DYA Studio上の表示名（必須項目）
         scale-multiplier = <1>;
         scale-divisor = <16>;
     };
@@ -79,13 +80,14 @@
         compatible = "zmk,input-processor-runtime";
         #input-processor-cells = <0>;
         type = "scroll";
+        processor-label = "Scroll Horizontal"; // DYA Studio上の表示名（必須項目）
         scale-multiplier = <1>;
         scale-divisor = <16>;
     };
 };
 
 // ==========================================================================
-// 2. 既存のトラックボールリスナーにレイヤーごとの設定を紐付け（ここは前回と同様です）
+// 2. 既存のトラックボールリスナーにレイヤーごとの設定を紐付け
 // ==========================================================================
 &trackball_listener {
     status = "okay";
