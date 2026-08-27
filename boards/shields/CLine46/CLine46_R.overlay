@@ -64,30 +64,30 @@
 
 // マウススクロールを縦横別レイヤーに設定
 // ==========================================================================
-// 1. ルート直下に DYA Studio対応のランタイムプロセッサを「縦用」「横用」として新規定義
+// 1. ルート直下に DYA Studio対応のプロセッサを「複製」して定義
 // ==========================================================================
 / {
+    /* 縦スクロール用：既存のランタイムプロセッサと同じ中身でラベルだけ上書き */
     scroll_v_runtime_proc: scroll_v_runtime_proc {
         compatible = "zmk,input-processor-runtime";
         #input-processor-cells = <0>;
-        type = "scroll";
-        processor-label = "Scroll Vertical"; // DYA Studio上の表示名（必須項目）
+        processor-label = "Scroll Vertical"; // DYA Studio上の表示名
         scale-multiplier = <1>;
         scale-divisor = <16>;
     };
 
+    /* 横スクロール用：同様に複製 */
     scroll_h_runtime_proc: scroll_h_runtime_proc {
         compatible = "zmk,input-processor-runtime";
         #input-processor-cells = <0>;
-        type = "scroll";
-        processor-label = "Scroll Horizontal"; // DYA Studio上の表示名（必須項目）
+        processor-label = "Scroll Horizontal"; // DYA Studio上の表示名
         scale-multiplier = <1>;
         scale-divisor = <16>;
     };
 };
 
 // ==========================================================================
-// 2. 既存のトラックボールリスナーにレイヤーごとの設定を紐付け
+// 2. トラックボールのリスナー設定
 // ==========================================================================
 &trackball_listener {
     status = "okay";
@@ -101,7 +101,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-            <&scroll_v_runtime_proc>;
+            <&scroll_v_runtime_proc>; // 新しく作った縦用を適用
     };
 
     /* 【レイヤー5】横スクロール専用設定 */
@@ -111,7 +111,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-            <&scroll_h_runtime_proc>;
+            <&scroll_h_runtime_proc>; // 新しく作った横用を適用
     };
 };
 
