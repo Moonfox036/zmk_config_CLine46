@@ -67,11 +67,16 @@
 // 1. ルート直下に DYA Studio対応のプロセッサを「複製」して定義
 // ==========================================================================
 / {
-    /* 縦スクロール用：既存のランタイムプロセッサと同じ中身でラベルだけ上書き */
+    /* 縦スクロール用：既存のベースを基に定義し、DYA上の表示名だけを個別に指定 */
     scroll_v_runtime_proc: scroll_v_runtime_proc {
         compatible = "zmk,input-processor-runtime";
         #input-processor-cells = <0>;
         processor-label = "Scroll Vertical"; // DYA Studio上の表示名
+        
+        // 必須プロパティを内包
+        type = <1>; // 定数INPUT_PROCESSOR_TYPE_SCROLLに相当する値(1)
+        x-codes = <INPUT_REL_HWHEEL>;
+        y-codes = <INPUT_REL_WHEEL>;
         scale-multiplier = <1>;
         scale-divisor = <16>;
     };
@@ -81,6 +86,11 @@
         compatible = "zmk,input-processor-runtime";
         #input-processor-cells = <0>;
         processor-label = "Scroll Horizontal"; // DYA Studio上の表示名
+        
+        // 必須プロパティを内包
+        type = <1>; 
+        x-codes = <INPUT_REL_HWHEEL>;
+        y-codes = <INPUT_REL_WHEEL>;
         scale-multiplier = <1>;
         scale-divisor = <16>;
     };
@@ -101,7 +111,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-            <&scroll_v_runtime_proc>; // 新しく作った縦用を適用
+            <&scroll_v_runtime_proc>; // 新しく作った縦用プロセッサを適用
     };
 
     /* 【レイヤー5】横スクロール専用設定 */
@@ -111,7 +121,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-            <&scroll_h_runtime_proc>; // 新しく作った横用を適用
+            <&scroll_h_runtime_proc>; // 新しく作った横用プロセッサを適用
     };
 };
 
