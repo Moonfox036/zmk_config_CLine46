@@ -47,6 +47,13 @@
             key-positions = <31 32>;
             require-prior-idle-ms = <125>;
             display-name = "L-Alt + L-Arrow";
+
+        l_alt_up_arrow {
+            slot = <3>;
+            bindings = <&kp LA(LEFT_ARROW)>;
+            key-positions = <31 32>;
+            require-prior-idle-ms = <125>;
+            display-name = "L-Alt + L-Arrow";
         };
     };
 
@@ -106,10 +113,10 @@
         Device_Layer3 {
             display-name = "Device_Layer3";
             bindings = <
-&bt BT_CLR      &trans  &trans        &trans        &sys_reset    &bootloader                            &bootloader  &sys_reset  &trans    &trans     &trans  &trans
-&bt BT_CLR_ALL  &trans  &bt BT_SEL 4  &trans        &trans        &trans                                 &trans       &trans      &kp UP    &trans     &trans  &trans
-&trans          &trans  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &trans                                 &trans       &kp LEFT    &kp DOWN  &kp RIGHT  &trans  &trans
-                &trans  &bt BT_SEL 0  &trans        &trans        &trans       &trans    &studio_unlock  &trans                             &trans     &trans
+&bt BT_CLR      &trans  &trans        &trans        &sys_reset    &bootloader                            &bootloader  &sys_reset      &trans          &trans           &trans  &trans
+&bt BT_CLR_ALL  &trans  &bt BT_SEL 4  &trans        &trans        &trans                                 &trans       &trans          &kp UP_ARROW    &mo 5            &trans  &trans
+&trans          &trans  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &trans                                 &trans       &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans
+                &trans  &bt BT_SEL 0  &trans        &trans        &trans       &trans    &studio_unlock  &trans                                       &trans           &trans
             >;
         };
 
@@ -126,10 +133,10 @@
         Brank_Layer5 {
             display-name = "Brank_Layer5";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-        &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                  &trans  &trans
+&none  &none  &none  &none  &none  &none                  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none                  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none                  &none  &none  &none  &none  &none  &none
+       &none  &none  &none  &none  &none  &none    &none  &none                  &none  &none
             >;
         };
 
