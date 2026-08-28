@@ -62,26 +62,45 @@
 };
 
 // Overrides for the input listener node
+/* 横スクロール（HWHEEL）、縦スクロール（VWHEEL）だけを対象にする scaler を定義 */
+ / {
+    input_processors {
+        no_hscroll: no_hscroll {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+
+        no_vscroll: no_vscroll {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_WHEEL>;
+            track-remainders;
+        };
+    };
+};
+
 &trackball_listener {
     status = "okay";
     device = <&trackball>;
 
-/*
     input-processors =<&mouse_runtime_input_processor>,
         //<&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;         //Y軸反転
         //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
         <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>;       //X軸反転
         //<&zip_temp_layer 2 1000>;                            //オートマウスレイヤーの選択;
-*/
 
     /* レイヤー3：横スクロールを実質無効化（=縦のみ） */
     scroller {
         layers = <3>;
         input-processors = 
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       //Y軸反転
-            <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
             <&no_hscroll 1 1000>,                               //横スクロールだけ実質ゼロ化
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
+            <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
+            //<&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
             //<&scroll_runtime_input_processor>;                  //スクロール量・軸スナップをDYA Studioから調整可能に
             <&zip_scroll_scaler 1 16>;                          //スクロール量を1/16倍に変更
     };
@@ -91,8 +110,8 @@
         layers = <5>;
         input-processors = 
             // <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,    //X軸反転
-            <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
             <&no_vscroll 1 1000>,                               //縦スクロールだけ実質ゼロ化
+            <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
             //<&scroll_runtime_input_processor>;                  //スクロール量・軸スナップをDYA Studioから調整可能に
             <&zip_scroll_scaler 1 16>;                          //スクロール量を1/16倍に変更
@@ -111,25 +130,6 @@
             <&scroll_runtime_input_processor>;                  //スクロール量・軸スナップをDYA Studioから調整可能に
     };
 */
-};
-
-/* 横スクロール（HWHEEL）、縦スクロール（VWHEEL）だけを対象にする scaler を定義 */
- / {
-    input_processors {
-        no_hscroll: no_hscroll {
-            compatible = "zmk,input-processor-scaler";
-            #input-processor-cells = <2>;
-            type = <INPUT_EV_REL>;
-            codes = <INPUT_REL_HWHEEL>;
-        };
-
-        no_vscroll: no_vscroll {
-            compatible = "zmk,input-processor-scaler";
-            #input-processor-cells = <2>;
-            type = <INPUT_EV_REL>;
-            codes = <INPUT_REL_WHEEL>;
-        };
-    };
 };
 
 // スクロール用のランタイム入力プロセッサ。
