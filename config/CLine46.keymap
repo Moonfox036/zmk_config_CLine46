@@ -96,7 +96,7 @@
             bindings = <
 &trans  &none   &none   &none          &none             &none                               &kp INT_YEN    &kp LS(NUMBER_7)  &kp LS(NUMBER_8)  &kp LS(NUMBER_9)  &kp RBKT                 &kp NON_US_HASH
 &trans  &none   &none   &kp SEMICOLON  &kp SINGLE_QUOTE  &kp LEFT_BRACKET                    &kp LBKT       &kp LS(NUMBER_4)  &kp LS(NUMBER_5)  &kp LS(NUMBER_6)  &kp LS(INTERNATIONAL_1)  &kp LS(MINUS)
-&trans  &none   &none   &none          &none             &none                               &kp LS(SLASH)  &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(NUMBER_3)  &kp LS(ESCAPE)           &kp EQUAL
+&trans  &none   &none   &none          &none             &none                               &kp LS(SLASH)  &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(NUMBER_3)  &kp LS(EQUAL)            &kp EQUAL
         &trans  &trans  &trans         &trans            &trans            &trans    &trans  &trans                                             &kp RIGHT_ALT     &trans
             >;
         };
@@ -115,7 +115,7 @@
             display-name = "Device_Layer3";
             bindings = <
 &bt BT_CLR      &trans  &trans        &trans        &sys_reset    &bootloader                            &bootloader  &sys_reset      &trans          &trans           &trans  &trans
-&bt BT_CLR_ALL  &trans  &bt BT_SEL 4  &trans        &trans        &trans                                 &trans       &trans          &kp UP_ARROW    &mo 5            &trans  &trans
+&bt BT_CLR_ALL  &trans  &bt BT_SEL 4  &trans        &trans        &trans                                 &trans       &trans          &kp UP_ARROW    &trans           &trans  &trans
 &trans          &trans  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &trans                                 &trans       &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans
                 &trans  &bt BT_SEL 0  &trans        &trans        &trans       &trans    &studio_unlock  &trans                                       &trans           &trans
             >;
