@@ -52,7 +52,7 @@
         l_alt_up_arrow {
             slot = <3>;
             bindings = <&kp LA(UP_ARROW)>;
-            key-positions = <8 9>;
+            key-positions = <7 8>;
             require-prior-idle-ms = <125>;
             display-name = "L-Alt + UP-Arrow";
         };
