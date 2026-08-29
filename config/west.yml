@@ -88,11 +88,11 @@ manifest:
       remote: cormoran
       revision: main
       
-    /* ここより上に入れ替え ----------
-    - name: zmk-pmw3610-driver
-      remote: badjeff
-      revision: main
-    ------------------------------*/
+    # ここより上に入れ替え ----------
+    #- name: zmk-pmw3610-driver
+    #  remote: badjeff
+    #  revision: main
+    #------------------------------
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
